@@ -11,3 +11,11 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
+  echo_job:
+    runs-on: ubuntu-latest
+    env:
+      HELLO: Hello
+    steps:
+      - name: "Say Hello, world!"
+        run: echo "$HELLO, world!"
+
