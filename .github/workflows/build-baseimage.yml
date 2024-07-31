@@ -44,16 +44,16 @@ jobs:
           # - '{ "tag_prefix": "ubuntu-22.04", "baseimage": "uraitakahito/baseimage:ubuntu-22.04-v3.6.2", "platforms": "linux/amd64,linux/arm/v7,linux/arm64/v8" }'
 
     steps:
-      - name: Free disk space
-        uses: jlumbroso/free-disk-space@main
-        with:
-          tool-cache: true
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          docker-images: true
-          swap-storage: false
+      # - name: Free disk space
+      #   uses: jlumbroso/free-disk-space@main
+      #   with:
+      #     tool-cache: true
+      #     android: true
+      #     dotnet: true
+      #     haskell: true
+      #     large-packages: true
+      #     docker-images: true
+      #     swap-storage: false
 
       - name: Prepare
         id: prep
