@@ -122,8 +122,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup BATS
-        uses: mig4/setup-bats@v1
+      # The following actions uses node12 which is deprecated and will be forced to run on node16: mig4/setup-bats@v1. For more info:
+      # https://github.blog/changelog/2023-06-13-github-actions-all-actions-will-run-on-node16-instead-of-node12-by-default/
+      # - name: Setup BATS
+      #   uses: mig4/setup-bats@v1
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v3
