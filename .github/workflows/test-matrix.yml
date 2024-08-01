@@ -1,0 +1,17 @@
+# https://docs.github.com/ja/actions/learn-github-actions/contexts#example-usage-of-the-matrix-context
+name: Test matrix
+on: push
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [14, 16]
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Output node version
+        run: node --version
