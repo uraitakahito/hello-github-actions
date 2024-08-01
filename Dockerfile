@@ -1,3 +1,2 @@
-ARG BASEIMAGE=unknown
-FROM ${BASEIMAGE}
+FROM busybox
 USER developer
