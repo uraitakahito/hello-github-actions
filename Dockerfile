@@ -1,0 +1,3 @@
+ARG BASEIMAGE=unknown
+FROM ${BASEIMAGE}
+USER developer

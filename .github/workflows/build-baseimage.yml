@@ -136,3 +136,29 @@ jobs:
         uses: docker/setup-buildx-action@v3
         with:
           driver-opts: network=host
+
+      - name: Login to DockerHub
+        if: ${{ steps.prep.outputs.is_release == 'yes' }}
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build and push to Dockerhub
+        # NOTE: The `--load` option of `buildx` only works with a single
+        #       platform.  Thus, we cannot build the image with `--load`, test
+        #       the image and then `docker push` it.  We need to build the image
+        #       twice, with different tags.  The second build should however
+        #       be very fast because of cache.  See:
+        #         - https://github.com/docker/buildx/issues/59
+        #         - https://github.com/docker/build-push-action/issues/132
+        if: ${{ steps.prep.outputs.is_release == 'yes' }}
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          provenance: false
+          platforms: ${{ fromJSON(matrix.info).platforms }}
+          tags: ${{ steps.prep.outputs.tags }}
+          build-args: |
+            BASEIMAGE=${{ fromJSON(matrix.info).baseimage }}
+            IMAGE_VERSION=${{ steps.prep.outputs.label_version }}
