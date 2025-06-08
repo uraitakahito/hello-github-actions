@@ -1,5 +1,7 @@
 # https://docs.github.com/ja/actions/learn-github-actions/contexts#example-usage-of-the-matrix-context
 name: Test matrix
+
+# Controls when the workflow will run
 on: push
 
 jobs:
